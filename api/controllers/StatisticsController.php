@@ -63,8 +63,11 @@ class StatisticsController extends ApiController
 
             $statisticsService = new Statistics();
 
+            $platesAndTotal = $statisticsService->getSalesPlatesByOrderDateTime($fromDateTime, $toDateTime);
+
             $this->addData([
-                'plates' => $statisticsService->getSalesPlatesByOrderDateTime($fromDateTime, $toDateTime)
+                'plates' => $platesAndTotal['itemsPlate'],
+                'total'  => $platesAndTotal['totalRow']
             ]);
         } catch (NoGetArgumentException $noGetArgumentException) {
 

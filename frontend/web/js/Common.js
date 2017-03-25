@@ -33,7 +33,8 @@
 
                 App.components.templates.render(instance.tableTemplate, {
                     'data': {
-                        items : response.data.plates
+                        items : response.data.plates,
+                        total : response.data.total
                     },
                     'callback': function (html) {
 

@@ -69,6 +69,66 @@ class Statistics
         $platesCommand->bindValue(':from', $from);
         $platesCommand->bindValue(':to',   $to);
 
-        return $platesCommand->queryAll();
+        $itemsPlate = $platesCommand->queryAll();
+
+        $totalRow = $this->getTotalByItemsPlate($itemsPlate);
+
+        $totalRow['countOrders'] = $this->getCountByOrderDateTime($from, $to);
+
+        return [
+            'itemsPlate' => $itemsPlate,
+            'totalRow'   => $totalRow,
+        ];
+    }
+
+    /**
+     * @param string $from
+     * @param string $to
+     *
+     * @return int
+     * @throws \InvalidArgumentException
+     */
+    public function getCountByOrderDateTime($from, $to)
+    {
+        Assert::assert($from, 'from')->notEmpty()->string();
+        Assert::assert($to,   'to')->notEmpty()->string();
+
+        $platesCommand = Yii::$app->dataBase->createCommand('
+            SELECT COUNT(*) as count
+            FROM orders
+            WHERE FROM_UNIXTIME(orders.date) BETWEEN :from AND :to
+        ');
+
+        $platesCommand->bindValue(':from', $from);
+        $platesCommand->bindValue(':to',   $to);
+
+        $result = $platesCommand->queryOne();
+
+        return $result['count'];
+    }
+
+    /**
+     * @param array $itemsPlate
+     *
+     * @return array
+     */
+    private function getTotalByItemsPlate($itemsPlate)
+    {
+        $totalRow = [
+            'amount'      => 0,
+            'gross_sales' => 0,
+            'tax'         => 0,
+            'net_sales'   => 0,
+        ];
+
+        foreach ($itemsPlate as $itemPlate) {
+
+            $totalRow['amount']      += $itemPlate['amount'];
+            $totalRow['gross_sales'] += $itemPlate['gross_sales'];
+            $totalRow['tax']         += $itemPlate['tax'];
+            $totalRow['net_sales']   += $itemPlate['net_sales'];
+        }
+
+        return $totalRow;
     }
 }
