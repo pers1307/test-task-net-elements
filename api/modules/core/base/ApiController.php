@@ -1,7 +1,4 @@
 <?php
-/**
- * @author bmxnt <bmxnt@mail.ru>
- */
 
 namespace api\modules\core\base;
 
