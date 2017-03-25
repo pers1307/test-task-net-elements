@@ -28,45 +28,13 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'Генератор v. 2',
+        'brandLabel' => 'Тестовое задание',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    $menuItems = [
-        ['label' => 'Импорт',
-         'items' => [
-             ['label' => 'Импорт товаров',                    'url' => ['/import/index']],
-             ['label' => 'Список всех продуктов',             'url' => ['/product/index']],
-             ['label' => 'Импорт клиентов',                   'url' => ['/import/clients']],
-             ['label' => 'Список всех клиентов',              'url' => ['/client']],
-         ],
-        ],
-        ['label' => 'Генерация заказов',
-         'items' => [
-             ['label' => 'Выборка продуктов',                 'url' => ['/generate/select']],
-             ['label' => 'Распределение продуктов на заказы', 'url' => ['/generate/order']],
-             ['label' => 'Добавить отмененные заказы',        'url' => ['/more-orders/cancel']],
-             ['label' => 'Добавить заказы для админки',       'url' => ['/more-orders/lost']],
-             ['label' => 'Даты продаж',                       'url' => ['/date/sales']],
-             ['label' => 'Распределение заказов по датам',    'url' => ['/generate/days']],
-             ['label' => 'Даты заказа',                       'url' => ['/date/make-order-day']],
-             ['label' => 'Источники совершения заказа',       'url' => ['/order-source/generate']],
-             ['label' => 'Распределение клиентов',            'url' => ['/client/spread']],
-             ['label' => 'Временные интервалы заказа',        'url' => ['/time/spread-time']],
-             ['label' => 'Добавление цены доставки',          'url' => ['/price-delivery/index']],
-             ['label' => 'Управленческая таблица',            'url' => ['/order']],
-         ],
-        ],
-        ['label' => 'Звонки и доставки', 'url' => ['/call/index']],
-        ['label' => 'Хранилище',
-         'items' => [
-             ['label' => 'Экспорт',                                  'url' => ['/export/storage']],
-             ['label' => 'Данные',                                   'url' => ['/settings/data']],
-         ],
-        ],
-    ];
+    $menuItems = [];
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $menuItems,
@@ -86,7 +54,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; Генератор 2016 - <?= date('Y') ?></p>
+        <p class="pull-left">&copy; Тестовое задание Net Elements 2017 - <?= date('Y') ?></p>
 
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
