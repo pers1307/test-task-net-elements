@@ -47,7 +47,7 @@ class Statistics
             FROM orders
             JOIN order_items ON orders.id = order_items.order_id
             JOIN plates ON order_items.plate_id = plates.id
-            WHERE FROM_UNIXTIME(orders.date) BETWEEN ":from" AND ":to"
+            WHERE FROM_UNIXTIME(orders.date) BETWEEN :from AND :to
             GROUP BY plates.id
         ');
 
@@ -62,7 +62,7 @@ class Statistics
 //            FROM orders
 //            JOIN order_items ON orders.id = order_items.order_id
 //            JOIN plates ON order_items.plate_id = plates.id
-//            WHERE FROM_UNIXTIME(orders.date) BETWEEN ":from" AND ":to"
+//            WHERE FROM_UNIXTIME(orders.date) BETWEEN :from AND :to
 //            GROUP BY plates.id
 //        ');
 

@@ -1,0 +1,29 @@
+<tbody>
+
+    <% items.forEach(function(item) { %>
+
+        <tr>
+            <td><%= item.name %></td>
+            <td><%= item.amount %></td>
+            <td>$ <%= item.gross_sales %></td>
+
+            <% if (item.tax < 0) { %>
+
+                <td class="negative">$ <%= item.tax %></td>
+            <% } else { %>
+
+                <td>$ <%= item.tax %></td>
+            <% } %>
+
+            <td class="net-sales-colon">$ <%= item.net_sales %></td>
+        </tr>
+    <% }); %>
+
+    <tr class="table-result">
+        <td>All orders - 123</td>
+        <td>343</td>
+        <td>$ 50,452.00</td>
+        <td class="negative">$ -105.00</td>
+        <td class="net-sales-colon">$ 10000.00</td>
+    </tr>
+</tbody>

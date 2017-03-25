@@ -16,8 +16,10 @@ class AppAsset extends AssetBundle
         'css/custom.css',
     ];
     public $js = [
+        'js/vendor/lodash.js',
         'js/App.js',
         'js/Api.js',
+        'js/Templates.js',
         'js/Common.js',
     ];
     public $depends = [

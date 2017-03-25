@@ -5,9 +5,14 @@
 
         this.$document = $(document);
 
-        this.oneClickClass = '.js-one-click';
-        this.noButtonClick = 'noButtonClick';
+        this.$table = $('.js-table');
 
+        this.statisticsPlatesUrl = '/api/statistics.get-by-plates';
+
+        this.fromDate = '2016-09-01';
+        this.toDate   = '2016-09-15';
+
+        this.tableTemplate = 'table/table.html';
 
         this.bindEvents();
     };
@@ -16,26 +21,33 @@
     // Event handlers
     //-----------------------------------------------------
 
-    Common.prototype.tryGetFileLink = function () {
+    Common.prototype.renderTable = function () {
         var instance = this;
 
+        App.components.api.fetch(instance.statisticsPlatesUrl, {
+            'data' : {
+                '**from' : instance.fromDate,
+                'to**'   : instance.toDate
+            },
+            'successCallback' : function (response) {
+
+                App.components.templates.render(instance.tableTemplate, {
+                    'data': {
+                        items : response.data.plates
+                    },
+                    'callback': function (html) {
+
+                        instance.$table.append(html);
+                    }
+                });
+            }
+        });
     };
 
     Common.prototype.bindEvents = function () {
         var instance = this;
 
-        instance.$document.on('click', instance.oneClickClass, function (e) {
-
-            instance.oneClickClass.each(function () {
-
-                var errorCount = $('.has-error').length;
-
-                if (errorCount == 0) {
-
-                    $(this).addClass('noButtonClick');
-                }
-            });
-        });
+        instance.renderTable();
     };
 
     App.modules.common = new Common();
