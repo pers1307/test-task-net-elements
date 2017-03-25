@@ -23,7 +23,8 @@
         "kartik-v/yii2-widget-select2": "@dev",
         "kartik-v/yii2-widget-timepicker": "*",
         "janisto/yii2-timepicker": "*",
-        "nkovacs/yii2-datetimepicker": "^3.0"
+        "nkovacs/yii2-datetimepicker": "^3.0",
+        "ko-ko-ko/assert": "~1.1.0"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

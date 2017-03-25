@@ -40,21 +40,3 @@
 
     App.modules.common = new Common();
 });
-
-
-$(document).ready(function() {
-
-    /**
-     * Export Dostavista, select 
-     */
-    $('#exportdostavistaordersform-userid').change(function(){
-
-        var comment = $('.js-comment[data-id="' + $(this).val() + '"]').text();
-        var address = $('.js-address[data-id="' + $(this).val() + '"]').text();
-        var content = $('.js-content[data-id="' + $(this).val() + '"]').text();
-
-        $('#exportdostavistaordersform-comment').val(comment);
-        $('#exportdostavistaordersform-address').val(address);
-        $('#exportdostavistaordersform-products').val(content);
-    });
-});
