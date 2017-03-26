@@ -13,6 +13,8 @@ namespace api\controllers;
 
 use api\modules\core\base\ApiController;
 use common\exception\NoGetArgumentException;
+use common\exception\WrongArgumentException;
+use common\services\Date;
 use common\services\Statistics;
 use Yii;
 
@@ -52,13 +54,20 @@ class StatisticsController extends ApiController
 
                 if (empty($fromDateTime)) {
 
-                    throw new NoGetArgumentException('Не передано время (параметр **from)');
+                    throw new NoGetArgumentException('Не передано время (параметр from)');
                 }
 
                 if (empty($toDateTime)) {
 
-                    throw new NoGetArgumentException('Не передано время (параметр to**)');
+                    throw new NoGetArgumentException('Не передано время (параметр to)');
                 }
+            }
+
+            $dateService = new Date();
+
+            if ($dateService->firstDateTimeMoreSecondDateTime($toDateTime, $fromDateTime) === false) {
+
+                throw new WrongArgumentException('Время в параметре to больше, чем в from');
             }
 
             $statisticsService = new Statistics();
@@ -72,6 +81,9 @@ class StatisticsController extends ApiController
         } catch (NoGetArgumentException $noGetArgumentException) {
 
             $this->errorAction(1001, 'Custom system error', ['error' => $noGetArgumentException->getMessage()]);
+        } catch (WrongArgumentException $wrongArgumentException) {
+
+            $this->errorAction(1001, 'Custom system error', ['error' => $wrongArgumentException->getMessage()]);
         } catch (\Exception $exception) {
 
             $this->errorAction(1001, 'Custom system error', ['error' => 'Что - то пошло не так']);

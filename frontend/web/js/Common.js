@@ -9,8 +9,8 @@
 
         this.statisticsPlatesUrl = '/api/statistics.get-by-plates';
 
-        this.fromDate = '2016-09-01';
-        this.toDate   = '2016-09-15';
+        this.fromDate = '2016-09-01 21:15:15';
+        this.toDate   = '2016-09-15 13:00:00';
 
         this.tableTemplate = 'table/table.html';
 
