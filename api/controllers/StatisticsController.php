@@ -37,16 +37,16 @@ class StatisticsController extends ApiController
      * по переданному диапазону дат совершения заказа
      *
      * GET
-     * @param string **from (example: '2016-09-01 00:00:00')
-     * @param string to**   (example: '2016-09-15 22:58:36')
+     * @param string from (example: '2016-09-01 00:00:00')
+     * @param string to   (example: '2016-09-15 22:58:36')
      *
      * @return response.data.success || response.data.total
      */
     public function actionGetByPlates()
     {
         try {
-            $fromDateTime = htmlspecialchars(Yii::$app->request->get('**from'));
-            $toDateTime   = htmlspecialchars(Yii::$app->request->get('to**'));
+            $fromDateTime = htmlspecialchars(Yii::$app->request->get('from'));
+            $toDateTime   = htmlspecialchars(Yii::$app->request->get('to'));
 
             if (empty($fromDateTime) || empty($toDateTime)) {
 

@@ -26,8 +26,8 @@
 
         App.components.api.fetch(instance.statisticsPlatesUrl, {
             'data' : {
-                '**from' : instance.fromDate,
-                'to**'   : instance.toDate
+                'from' : instance.fromDate,
+                'to'   : instance.toDate
             },
             'successCallback' : function (response) {
 
